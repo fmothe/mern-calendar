@@ -4,6 +4,8 @@ import "../../styles/modal.css";
 import DateTimePicker from "react-datetime-picker";
 import moment from "moment";
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { closeModalAction } from "../../redux/actions/uiActions";
 
 const customStyles = {
   content: {
@@ -21,9 +23,12 @@ Modal.setAppElement("#root");
 const now = moment().minutes(0).seconds(0).add(1, "hours");
 
 export const CalendarModal = () => {
+  const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(now.toDate());
   const [endDate, setEndDate] = useState(now.clone().add(1, "hours").toDate());
-  const [titleValid, settitleValid] = useState(true)
+  const [titleValid, settitleValid] = useState(true);
+  const { modalOpen } = useSelector((state) => state.ui);
+
   const [formValues, setformValues] = useState({
     title: "",
     notes: "",
@@ -41,7 +46,7 @@ export const CalendarModal = () => {
   };
 
   const closeModal = () => {
-      //todocerrarmodal
+    dispatch(closeModalAction());
   };
 
   const onStartDateChange = (e) => {
@@ -73,22 +78,22 @@ export const CalendarModal = () => {
       return;
     }
 
-    if(title.trim().length < 2 ){
-        settitleValid(false)
+    if (title.trim().length < 2) {
+      settitleValid(false);
 
-        return;
+      return;
     }
 
-    settitleValid(true)
+    settitleValid(true);
 
     //TODO database
 
-    closeModal()
+    closeModal();
   };
 
   return (
     <Modal
-      isOpen={true}
+      isOpen={modalOpen}
       onRequestClose={closeModal}
       style={customStyles}
       closeTimeoutMS={200}
@@ -120,7 +125,7 @@ export const CalendarModal = () => {
           <label>Title</label>
           <input
             type="text"
-            className={`form-control ${!titleValid && 'is-invalid'}`}
+            className={`form-control ${!titleValid && "is-invalid"}`}
             placeholder="Title"
             name="title"
             autoComplete="off"

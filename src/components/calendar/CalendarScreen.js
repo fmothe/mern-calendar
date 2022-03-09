@@ -6,15 +6,18 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../../styles/generalstyles.css";
 import { CalendarEvent } from "./CalendarEvent";
 import { CalendarModal } from "./CalendarModal";
+import { useDispatch, useSelector } from "react-redux";
+import { openModalAction } from "../../redux/actions/uiActions";
 
 export const CalendarScreen = () => {
 
   const [lastView, setLastView] = useState(localStorage.getItem('calendarView') || 'month')
+  const dispatch = useDispatch();
+  
   const onDoubleClick = (e) =>{
-    console.log(e)
+    dispatch(openModalAction())
   }
   const onSelectEvent = (e) =>{
-    console.log(e)
   }
   const onViewChange = (e) =>{
     setLastView(e)
