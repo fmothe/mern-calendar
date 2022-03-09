@@ -6,6 +6,7 @@ import moment from "moment";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModalAction } from "../../redux/actions/uiActions";
+import { addNewEventAction } from "../../redux/actions/calendarActions";
 
 const customStyles = {
   content: {
@@ -87,6 +88,12 @@ export const CalendarModal = () => {
     settitleValid(true);
 
     //TODO database
+    dispatch(
+      addNewEventAction({
+        ...formValues,
+        user: { _id: new Date.getTime(), name: "Federico" },
+      })
+    );
 
     closeModal();
   };

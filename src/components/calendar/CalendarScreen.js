@@ -8,6 +8,8 @@ import { CalendarEvent } from "./CalendarEvent";
 import { CalendarModal } from "./CalendarModal";
 import { useDispatch, useSelector } from "react-redux";
 import { openModalAction } from "../../redux/actions/uiActions";
+import { setActiveAction } from "../../redux/actions/calendarActions";
+import { FabButton } from "../ui/FabButton";
 
 export const CalendarScreen = () => {
 
@@ -18,6 +20,8 @@ export const CalendarScreen = () => {
     dispatch(openModalAction())
   }
   const onSelectEvent = (e) =>{
+    dispatch(setActiveAction(e))
+    dispatch(openModalAction())
   }
   const onViewChange = (e) =>{
     setLastView(e)
@@ -37,18 +41,19 @@ export const CalendarScreen = () => {
     }
   }
   const localizer = momentLocalizer(moment);
-  const eventsList = [
-    {
-      title: "Que miras",
-      start: moment().toDate(),
-      end: moment().add(2, "hours").toDate(),
-      bgColor: "#fafafa",
-      user: {
-        _id:'123',
-        name:'Federico'
-      }
-    },
-  ];
+  const eventsList = useSelector(state => state.calendar.events);
+  // const eventsList = [
+  //   {
+  //     title: "Que miras",
+  //     start: moment().toDate(),
+  //     end: moment().add(2, "hours").toDate(),
+  //     bgColor: "#fafafa",
+  //     user: {
+  //       _id:'123',
+  //       name:'Federico'
+  //     }
+  //   },
+  // ];
   return (
     <div className="calendar-screen">
       <Navbar />
@@ -64,6 +69,7 @@ export const CalendarScreen = () => {
         view={lastView}
         components={{event: CalendarEvent}}
       />
+      <FabButton/>
       <CalendarModal/>
     </div>
   );
