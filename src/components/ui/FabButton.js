@@ -3,8 +3,6 @@ import { useDispatch } from "react-redux";
 import { openModalAction } from "../../redux/actions/uiActions";
 import "../../styles/generalstyles.css";
 
-
-
 export const FabButton = () => {
   const dispatch = useDispatch();
   const createNewEvent = () => {

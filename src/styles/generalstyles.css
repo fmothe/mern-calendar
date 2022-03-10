@@ -13,11 +13,30 @@ body {
 /*FABS*/
 
 .fab {
-  border-radius: 100%;
-  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  border: 0px solid transparent;
+  border-radius: 1.25em;
+  transition: all 0.2s linear;
+  right: 1rem;
+  bottom: 4.5rem;
   position: fixed;
-  bottom: 20px;
-  padding: 25px;
-  right: 25px;
-  border: 0;
+  
+}
+
+.fab-danger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  border: 0px solid transparent;
+  border-radius: 1.25em;
+  transition: all 0.2s linear;
+  right: 1rem;
+  bottom: 1rem;
+  position: fixed;
 }

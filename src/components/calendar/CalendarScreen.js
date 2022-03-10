@@ -8,8 +8,9 @@ import { CalendarEvent } from "./CalendarEvent";
 import { CalendarModal } from "./CalendarModal";
 import { useDispatch, useSelector } from "react-redux";
 import { openModalAction } from "../../redux/actions/uiActions";
-import { setActiveAction } from "../../redux/actions/calendarActions";
+import { clearActiveEventAction, setActiveAction } from "../../redux/actions/calendarActions";
 import { FabButton } from "../ui/FabButton";
+import { DeleteFabButton } from "../ui/DeleteFabButton";
 
 export const CalendarScreen = () => {
 
@@ -21,11 +22,13 @@ export const CalendarScreen = () => {
   }
   const onSelectEvent = (e) =>{
     dispatch(setActiveAction(e))
-    dispatch(openModalAction())
   }
   const onViewChange = (e) =>{
     setLastView(e)
     localStorage.setItem("calendarView", e)
+  }
+  const onSelectSlot = (e) => {
+    dispatch(clearActiveEventAction())
   }
 
   const eventStyleGetter = (event, start, end, isSelected) =>{
@@ -42,18 +45,9 @@ export const CalendarScreen = () => {
   }
   const localizer = momentLocalizer(moment);
   const eventsList = useSelector(state => state.calendar.events);
-  // const eventsList = [
-  //   {
-  //     title: "Que miras",
-  //     start: moment().toDate(),
-  //     end: moment().add(2, "hours").toDate(),
-  //     bgColor: "#fafafa",
-  //     user: {
-  //       _id:'123',
-  //       name:'Federico'
-  //     }
-  //   },
-  // ];
+
+  const {active:activeEvent} = useSelector(state => state.calendar);
+  
   return (
     <div className="calendar-screen">
       <Navbar />
@@ -67,9 +61,12 @@ export const CalendarScreen = () => {
         onSelectEvent={onSelectEvent}
         onView={onViewChange}
         view={lastView}
+        onSelectSlot={onSelectSlot}
+        selectable={true}
         components={{event: CalendarEvent}}
       />
       <FabButton/>
+      {activeEvent && <DeleteFabButton/>}
       <CalendarModal/>
     </div>
   );

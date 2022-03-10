@@ -5,4 +5,5 @@ export const types = {
     EVENT_SET_ACTIVE:'[calendar] set active event',
     EVENT_DELETE:'[calendar] delete event',
     EVENT_UPDATE:'[calendar] update event',
+    EVENT_CLEAR_ACTIVE:'[calendar] clear active event',
 }
