@@ -6,4 +6,9 @@ export const types = {
     EVENT_DELETE:'[calendar] delete event',
     EVENT_UPDATE:'[calendar] update event',
     EVENT_CLEAR_ACTIVE:'[calendar] clear active event',
+    LOGIN_CHECKING_FINISH: "[auth] checking login finish",
+    LOGIN_START: "[auth] login start",
+    REGISTER_START:"[auth] register start",
+    TOKEN_RENEW:"[auth] token renew",
+    LOGOUT:"[auth] logout",
 }
