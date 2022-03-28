@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeModalAction } from "../../redux/actions/uiActions";
 import {
   addNewEventAction,
+  addNewEventStartAction,
   clearActiveEventAction,
   eventUpdateAction,
 } from "../../redux/actions/calendarActions";
@@ -108,10 +109,7 @@ export const CalendarModal = () => {
     activeEvent
       ? dispatch(eventUpdateAction(formValues))
       : dispatch(
-          addNewEventAction({
-            ...formValues,
-            user: { _id: new Date().getTime(), name: "Federico" },
-          })
+          addNewEventStartAction(formValues)
         );
 
     closeModal();

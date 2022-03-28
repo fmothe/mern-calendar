@@ -3,6 +3,7 @@ import { fetchWithoutToken, fetchWithToken } from "../../helpers/fetch";
 import axios from "../../helpers/axiosInitializer";
 import { types } from "../../types/types";
 import Swal from "sweetalert2";
+import { eventLogout } from "./calendarActions";
 export const startLogin = (email, password) => {
     return async (dispatch) => {
         const response = await fetchWithoutToken(
@@ -45,6 +46,7 @@ export const startLogin = (email, password) => {
 export const startLogoutAction = () => {
     return  (dispatch) => {
         localStorage.clear()
+        dispatch(eventLogout())
         dispatch({type: types.LOGOUT})
     }
 }

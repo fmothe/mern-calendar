@@ -5,15 +5,13 @@ import { LoginScreen } from "../components/auth/LoginScreen";
 import { RegisterScreen } from "../components/auth/RegisterScreen";
 import { CalendarScreen } from "../components/calendar/CalendarScreen";
 import { startChecking } from "../redux/actions/authAction";
-import { PrivateRoutes } from "./PrivateRoutes";
-import { PublicRoutes } from "./PublicRoutes";
 
 export const AppRouter = () => {
     const dispatch = useDispatch();
     const { checking, uid } = useSelector((state) => state.auth);
     useEffect(() => {
         dispatch(startChecking());
-    }, [dispatch,uid]);
+    }, [dispatch, uid]);
 
     if (checking) {
         return (
