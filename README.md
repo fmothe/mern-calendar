@@ -6,19 +6,20 @@ Its backend can be run through cloning the following repository: https://github.
 You can find more of this in the .env files. 
 
 ## This project has the following packages:
-    -moment
-    -react-big-calendar
-    -redux
-    -redux-thunk
-    -sweetalert2
-    -react-router-dom
-    -react-modal
-    -react-datetime-picker
-    -axios*
+    * moment
+    * react-big-calendar
+    * redux
+    * redux-thunk
+    * sweetalert2
+    * react-router-dom
+    * react-modal
+    * react-datetime-picker
+    * axios*
+    * @s-ui/mono as a dev dependency
 
 
 
-* Axios implementation still hasn't been done.
+- Axios implementation still hasn't been done.
 
 
 ## Available Scripts
@@ -39,6 +40,6 @@ Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `yarn run commit`
-To use the 
+To use the commit message prefabricated by the package @s-ui/mono
 
 
