@@ -42,6 +42,13 @@ export const startLogin = (email, password) => {
     };
 };
 
+export const startLogoutAction = () => {
+    return  (dispatch) => {
+        localStorage.clear()
+        dispatch({type: types.LOGOUT})
+    }
+}
+
 export const startRegister = (email, password, name) => {
     return async (dispatch) => {
         const response = await fetchWithoutToken(
@@ -88,14 +95,7 @@ export const startChecking = () => {
                 payload: { uid: body.uid, name: body.name },
             });
         } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: body.msg,
-                showConfirmButton: false,
-                timer: 1500,
-            });
-            dispatch({type: types.LOGIN_CHECKING_FINISH})
+          dispatch({type: types.LOGIN_CHECKING_FINISH})
         }
     };
 };

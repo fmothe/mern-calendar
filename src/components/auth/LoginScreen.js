@@ -1,12 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "../../helpers/useForm";
 import { startLogin } from "../../redux/actions/authAction";
 import "../../styles/login.css";
 
 export const LoginScreen = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [values, handleInputChange] = useForm({
         email: "",
         password: "",
@@ -15,6 +16,7 @@ export const LoginScreen = () => {
     const handleLogin = (e) => {
         e.preventDefault();
         dispatch(startLogin(values.email, values.password));
+        navigate('/', {replace: true})
     };
     return (
         <div className="container login-container">

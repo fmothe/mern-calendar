@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useForm } from "../../helpers/useForm";
 import { startRegister } from "../../redux/actions/authAction";
@@ -8,6 +8,7 @@ import "../../styles/login.css";
 
 export const RegisterScreen = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [values, handleInputChange] = useForm({
         name: "",
         email: "",
@@ -28,6 +29,7 @@ export const RegisterScreen = () => {
             });
         }
         dispatch(startRegister(email, password, name));
+        navigate('/login')
 
     };
     return (
